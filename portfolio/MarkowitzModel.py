@@ -47,11 +47,11 @@ def show_statistics(returns):
     print(returns.cov() * NUM_TRADING_DAYS)
 
 
-def show_mean_variance(returns, weights):
+def show_mean_variance(returns, weights):  
     # we are after the annual return
-    portfolio_return = np.sum(returns.mean() * weights) * NUM_TRADING_DAYS
-    portfolio_volatility = np.sqrt(np.dot(weights.T, np.dot(returns.cov()
-                                                            * NUM_TRADING_DAYS, weights)))
+    portfolio_return = np.sum(returns.mean() * weights) * NUM_TRADING_DAYS  
+    returns_weighted = np.dot(returns.cov()*NUM_TRADING_DAYS, weights)
+    portfolio_volatility = np.sqrt(np.dot(weights.T, returns_weighted))
     print("Expected portfolio mean (return): ", portfolio_return)
     print("Expected portfolio volatility (standard deviation): ", portfolio_volatility)
 
